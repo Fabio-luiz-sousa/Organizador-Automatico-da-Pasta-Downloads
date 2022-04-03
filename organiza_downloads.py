@@ -1,6 +1,7 @@
 import os
 import shutil
 
+
 path_original = r'C:\Users\Usuario\Downloads'
 path_word = r'C:\Users\Usuario\Downloads\WORD'
 path_pdf = r'C:\Users\Usuario\Downloads\PDF'
@@ -33,52 +34,50 @@ create_path()
 
 def move_word():
 
-    for roots, dirs, files in os.walk(path_original):
-        for file in files:
-            if file.endswith('.docx') or file.endswith('.doc') or file.endswith('.odt') or file.endswith('.pptx') or file.endswith('.xlsx'):
-                old_file_path = os.path.join(roots, file)
-                new_old_file = os.path.join(path_word, file)
-                shutil.move(old_file_path, new_old_file)
-                print(f'Arquivo {file} movido com sucesso')
+    for file in os.listdir(path_original):
+        if file.endswith(('.docx', '.doc', '.odt', '.pptx', '.xlsx', '.csv')):
+            print(file)
+            old_file_path = os.path.join(path_original, file)
+            new_path_file = os.path.join(path_word, file)
+            shutil.move(old_file_path, new_path_file)
 
 
 move_word()
 
 
 def move_pdf():
-    for roots, dirs, files in os.walk(path_original):
-        for file in files:
-            if file.endswith('.pdf'):
-                old_file_path = os.path.join(roots, file)
-                new_old_file = os.path.join(path_pdf, file)
-                shutil.move(old_file_path, new_old_file)
-                print(f'Arquivo {file} movido com sucesso')
+    for file in os.listdir(path_original):
+        if file.endswith('.pdf'):
+            print(file)
+            old_file_path = os.path.join(path_original, file)
+            new_path_file = os.path.join(path_pdf, file)
+            shutil.move(old_file_path, new_path_file)
 
 
 move_pdf()
 
 
 def move_imagens():
-    for roots, dirs, files in os.walk(path_original):
-        for file in files:
-            if file.endswith('.png') or file.endswith('.jpeg') or file.endswith('.gif') or file.endswith('.jpg'):
-                old_file_path = os.path.join(roots, file)
-                new_old_file = os.path.join(path_imagens, file)
-                shutil.move(old_file_path, new_old_file)
-                print(f'Arquivo {file} movido com sucesso')
+
+    for file in os.listdir(path_original):
+        if file.endswith(('.png', '.jpeg', '.gif', '.jpg', '.ico')):
+            print(file)
+            old_file_path = os.path.join(path_original, file)
+            new_path_file = os.path.join(path_imagens, file)
+            shutil.move(old_file_path, new_path_file)
 
 
 move_imagens()
 
 
 def move_others():
-    for roots, dirs, files in os.walk(path_original):
-        for file in files:
-            if not file.endswith('.docx') and not file.endswith('.doc') and not file.endswith('.odt') and not file.endswith('.pptx') and not file.endswith('.png') and not file.endswith('.jpeg') and not file.endswith('.gif') and not file.endswith('.jpg') and not file.endswith('.pdf') and not file.endswith('.xlsx'):
-                old_file_path = os.path.join(roots, file)
-                new_old_file = os.path.join(path_others, file)
-                shutil.move(old_file_path, new_old_file)
-                print(f'Arquivo {file} movido com sucesso')
+
+    for file in os.listdir(path_original):
+        if not file.endswith(('.png', '.jpeg', '.gif', '.jpg', '.ico', '.pdf', '.docx', '.doc', '.odt', '.pptx', '.xlsx', '.csv')) and '.' in file:
+            print(file)
+            old_file_path = os.path.join(path_original, file)
+            new_path_file = os.path.join(path_others, file)
+            shutil.move(old_file_path, new_path_file)
 
 
 move_others()
